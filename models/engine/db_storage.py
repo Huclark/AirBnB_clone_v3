@@ -64,12 +64,12 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
 
-	def get(self, cls, id):
-        """get object based on it class and its id""" 
-        if cls and id:
-            return self.__session.query(cls).filter(cls.id == id).first()
-
-        return None
+    def get(self, cls, id):
+      """get object based on it class and its id""" 
+      if cls and id:
+          return self.__session.query(cls).filter(cls.id == id).first()
+  
+      return None
 
     def reload(self):
         """reloads data from the database"""
@@ -81,3 +81,10 @@ class DBStorage:
     def close(self):
         """call remove() method on the private session attribute"""
         self.__session.remove()
+    
+    def count(self, cls=None):
+      """count the object in storage"""
+      if cls in classes.values():
+        return len(self.__session.query(cls).all())
+      if not  cls:
+        return sum(len(self.__session.query(c).all()) for c in classes.values())
