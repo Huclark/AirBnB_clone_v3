@@ -70,8 +70,7 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        try:
-            clas = classes.get("cls")
-            return all(clas)
-        except:
+        if cls in None or id is None:
             return None
+        key   = "{}.{}".format(cls, id)
+        return self.__objects.get(key, None)
