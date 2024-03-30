@@ -70,6 +70,8 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        try
+        try:
         clas = classes.get("cls")
-        all_instances = all(clas)
+        return all(clas)
+        except:
+            return None
