@@ -71,7 +71,7 @@ class FileStorage:
 
     def get(self, cls, id):
         try:
-        clas = classes.get("cls")
-        return all(clas)
+            clas = classes.get("cls")
+            return all(clas)
         except:
             return None
