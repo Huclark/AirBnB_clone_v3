@@ -65,12 +65,11 @@ class DBStorage:
             self.__session.delete(obj)
 
 	def get(self, cls, id):
-        """get object based on it class and its id"""      
-        try:
-            obj = classes.get(cls)
-            return self.__session.query(obj).filter(obj.id == id).first()
-        except:
-            return None
+        """get object based on it class and its id""" 
+        if cls and id:
+            return self.__session.query(cls).filter(cls.id == id).first()
+
+        return None
 
     def reload(self):
         """reloads data from the database"""
