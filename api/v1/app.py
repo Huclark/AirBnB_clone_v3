@@ -7,6 +7,7 @@ from models import storage
 
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
 
@@ -28,4 +29,3 @@ if __name__ == "__main__":
       port=getenv("HBNB_API_PORT", default="5000"),
       threaded=True
       )
-app.url_map.strict_slashes = False

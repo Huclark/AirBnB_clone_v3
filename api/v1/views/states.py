@@ -4,15 +4,15 @@ from models import storage
 from models.state import State
 
 
-@app_views.route("/state", methods=["GET", "POST"])
+@app_views.route("/states", methods=["GET", "POST"])
 def states():
     """Retrieves the list of all states if
     no state id otherwise the list of the provided state id
     """
     if request.method == "GET":
-        return jsonify({[
+        return jsonify([
             state.to_dict() for state in storage.all("State").values()
-        ]})
+        ])
     reqs = request.get_json(silent=True)
     if not reqs:
         return "Not a JSON", 400
