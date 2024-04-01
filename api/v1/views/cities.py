@@ -8,5 +8,5 @@ from models.city import City
 @app_views.route("/states/<state_id>/cities", methods=["GET", "POST"])
 def cities(state_id):
     """defines POST and GET request method
-    POST: 
     """
+    

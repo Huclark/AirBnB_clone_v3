@@ -20,7 +20,7 @@ def states():
     if not reqs.get("name"):
         return "Missing name", 400
     obj = State(**reqs)
-    obj.save
+    obj.save()
     return jsonify(obj.to_dict()), 201
 
 
@@ -39,8 +39,6 @@ def state_id(state_id):
     reqs = request.get_json(silent=True)
     if not reqs:
         return "Not a JSON"
-    [
-            setattr(state, k, v) for k, v in reqs
-            if k not in ["id", "update_at", "created_at"]
-    ]
+    [setattr(state, k, v)
+     for k, v in reqs if k not in ["id", "update_at", "created_at"]]
     return jsonify(state.to_dict())
