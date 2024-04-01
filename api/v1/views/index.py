@@ -12,18 +12,18 @@ from models.user import User
 
 @app_views.route("/status")
 def status():
-  """return the status of the app"""
-  return jsonify({'status': 'OK'})
+    """return the status of the app"""
+    return jsonify({'status': 'OK'})
 
 
 @app_views.route("/stats")
 def stats():
-  """Retreive the number of each object by type"""
-  return jsonify({
-    "amenities": storage.count(Amenity),
-    "cities": storage.count(City),
-    "places": storage.count(Place),
-    "reviews": storage.count(Review),
-    "states": storage.count(State),
-    "users": storage.count(User)
-  })
+    """Retreive the number of each object by type"""
+    return jsonify({
+      "amenities": storage.count(Amenity),
+      "cities": storage.count(City),
+      "places": storage.count(Place),
+      "reviews": storage.count(Review),
+      "states": storage.count(State),
+      "users": storage.count(User)
+    })
