@@ -25,7 +25,7 @@ def states():
 
 
 @app_views.route("/states/<state_id>", methods=["DELETE", "GET", "PUT"])
-def state_id(state_id):
+def state_id(state_id=None):
     """handle DELETE, PUT and GET methods"""
     state = storage.get(State, state_id)
     if not state:
