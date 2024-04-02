@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""flask app"""
+"""Entry point into web app API"""
 from os import getenv
 from flask import Flask, jsonify
 from flask_cors import CORS
