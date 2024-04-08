@@ -40,6 +40,11 @@ def state_id(state_id=None):
     reqs = request.get_json(silent=True)
     if not reqs:
         return "Not a JSON"
-    [setattr(state, k, v)
-     for k, v in reqs if k not in ["id", "update_at", "created_at"]]
+
+    print(state.to_dict())
+    for k, v in reqs.items():
+        if k not in ["id", "updated_at", "created_at"]:
+            setattr(state, k, v)
+
+    state.save()
     return jsonify(state.to_dict())
