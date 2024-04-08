@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""State route blueprint view"""
 from flask import abort, jsonify, request
 from api.v1.views import app_views
 from models import storage
