@@ -39,9 +39,8 @@ def state_id(state_id=None):
         return jsonify({})
     reqs = request.get_json(silent=True)
     if not reqs:
-        return "Not a JSON"
+        return "Not a JSON", 400
 
-    print(state.to_dict())
     for k, v in reqs.items():
         if k not in ["id", "updated_at", "created_at"]:
             setattr(state, k, v)
