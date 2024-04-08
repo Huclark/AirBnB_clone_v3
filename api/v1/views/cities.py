@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""state blueprint view routes"""
 from flask import abort, jsonify, request
 from api.v1.views import app_views
 from models import storage
@@ -29,7 +30,7 @@ def cities(state_id=None):
 
 @app_views.route("/cities/<city_id>", methods=["PUT", "DELETE", "GET"])
 def city(city_id=None):
-    """"""
+    """update, delete or get specific city by the id"""
     city = storage.get(City, city_id)
     if not city:
         abort(404)
@@ -43,5 +44,6 @@ def city(city_id=None):
     if not info:
         abort(400, "Not JSON")
     [setattr(city, k, v)
-     for k, v in info if k not in ["id", "update_at", "crea    ted_at"]]
+     for k, v in info.items()
+     if k not in ["id", "update_at", "crea    ted_at"]]
     return jsonify(city.to_dict())
