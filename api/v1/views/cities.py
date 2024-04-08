@@ -48,4 +48,5 @@ def city(city_id=None):
     [setattr(city, k, v)
      for k, v in info.items()
      if k not in ["id", "update_at", "created_at"]]
+    city.save()
     return jsonify(city.to_dict())
