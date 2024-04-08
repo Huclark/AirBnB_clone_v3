@@ -24,7 +24,6 @@ def cities(state_id=None):
     if not info.get("name"):
         abort(400, "Missing name")
     info["state_id"] = state_id
-    print(info)
     new = City(**info)
     new.save()
     return jsonify(new.to_dict()), 201
@@ -44,7 +43,7 @@ def city(city_id=None):
         return jsonify({})
     info = request.get_json()
     if not info:
-        abort(400, "Not JSON")
+        return "Not JSON", 400
     [setattr(city, k, v)
      for k, v in info.items()
      if k not in ["id", "update_at", "created_at"]]
