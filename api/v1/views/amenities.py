@@ -13,7 +13,7 @@ def amenities(amenity_id=None):
     if not amenity:
         abort(404)
     if request.method == "GET":
-        return jsoniify(amenity.to_dict())
+        return jsonify(amenity.to_dict())
     if request.method == "DELETE":
         amenity.delete()
         storage.save()
@@ -28,9 +28,13 @@ def amenities(amenity_id=None):
     return jsonify(amenity.to_dict())
 
 
-@app_views.route("/amenities", methods=["POST"])
+@app_views.route("/amenities", methods=["POST", "GET"])
 def create_amenity():
     """define amenity blueprint to create new amenity"""
+    if request.method == "GET":
+        amenities = storage.all(Amenity)
+        amenities_list = [amenity.to_dict() for amenity in amenities.values()]
+        return jsonify(amenities_list)
     info = request.get_json(silent=True)
     if not info:
         abort(400, "Not a JSON")
