@@ -8,7 +8,7 @@ from models.user import User
 
 @app_views.route("/users", methods=["GET", "POST"])
 def users():
-    """user blueprint route that get the list of all user 
+    """user blueprint route that get the list of all user
     and create new user
     """
     if request.method == "GET":
@@ -47,6 +47,6 @@ def user(user_id=None):
     if not info:
         abort(400, "Not a JSON")
     for k, v in info.items():
-        if  k not in ["id", "created_at", "updated_at"]:
+        if k not in ["id", "created_at", "updated_at"]:
             setattr(user, k, v)
-    return(user.to_dict())
+    return jsonify(user.to_dict())
