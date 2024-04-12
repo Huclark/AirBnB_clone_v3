@@ -41,9 +41,9 @@ def city(city_id=None):
         city.delete()
         storage.save()
         return jsonify({})
-    info = request.get_json()
+    info = request.get_json(silent=True)
     if not info:
-        return "Not JSON", 400
+        abort(400, "Not a JSON")
     [setattr(city, k, v)
      for k, v in info.items()
      if k not in ["id", "update_at", "created_at"]]
