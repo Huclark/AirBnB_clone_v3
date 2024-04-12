@@ -49,4 +49,5 @@ def user(user_id=None):
     for k, v in info.items():
         if k not in ["id", "created_at", "updated_at"]:
             setattr(user, k, v)
+    user.save()
     return jsonify(user.to_dict())
